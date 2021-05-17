@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script src="script.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Drum Kit</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="key" data-key="65">
+    <kbd>A</kbd>
+    <span class="play">Clap</span>
+      </div>
+      <div class="key" data-key="83">
+    <kbd>S</kbd>
+    <span class="play">Boom</span>
+      </div>
+      <div class="key" data-key="68">
+        <kbd>D</kbd>
+        <span class="play">Hit-Hat</span>
+      </div>
+      <div class="key" data-key="70">
+        <kbd>F</kbd>
+      <span class="play">Kick</span>
+      </div>
+      <div class="key" data-key="71">
+        <kbd>G</kbd>
+      <span class="play">Open-hat</span>
+      </div>
+      <div class="key" data-key="72">
+        <kbd>H</kbd>
+      <span class="play">Ride</span>
+      </div>
+      <div class="key" data-key="74">
+        <kbd>J</kbd>
+      <span class="play">Snare</span>
+      </div>
+      <div class="key" data-key="75">
+        <kbd>K</kbd>
+      <span class="play">Tom</span>
+      </div>
+    </div>
+  <audio data-key="65" src="https://www.fesliyanstudios.com/play-mp3/6679"></audio>
+  <audio data-key="83" src="https://www.fesliyanstudios.com/play-mp3/6650"></audio>
+  <audio data-key="68" src="https://www.fesliyanstudios.com/play-mp3/6698"></audio>
+  <audio data-key="70" src="https://www.fesliyanstudios.com/play-mp3/1152"></audio>
+  <audio data-key="71" src="https://www.fesliyanstudios.com/play-mp3/6713"></audio>
+  <audio data-key="72" src="https://www.fesliyanstudios.com/play-mp3/6742"></audio>
+  <audio data-key="74" src="https://www.fesliyanstudios.com/play-mp3/6764"></audio>
+  <audio data-key="75" src="https://www.fesliyanstudios.com/play-mp3/6688"></audio>
+
+  
+  </body>
+<script>
+  window.addEventListener("keydown",(e)=>{
+var audio=document.querySelector(`audio[data-key="${e.keyCode}"]`);
+var key=document.querySelector(`.key[data-key="${e.keyCode}"]`);
+if(audio){
+  audio.play();
+  audio.currentTime=0;
+}
+else{
+  return;
+}
+key.classList.add("playing");
+});
+
+function remove(e){
+  if(e.propertyName !== 'transform'){
+      return;
+  } 
+    this.classList.remove('playing');    
+}
+
+const keys = document.querySelectorAll(".key");
+keys.forEach(key => key.addEventListener('transitionend',remove));
+</script>
+
+</html>
